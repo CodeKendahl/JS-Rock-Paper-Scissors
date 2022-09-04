@@ -1,0 +1,83 @@
+const getUserChoice = (userInput) => {
+  userInput = userInput.toLowerCase();
+  if (userInput === 'rock' || userInput === 'scissors' || userInput === 'paper' || userInput === 'bomb') {
+   // Added "bomb above to include a secret winning code"
+    return userInput;
+  } else {
+    console.log('Error, please type: rock, paper or scissors')
+  }
+}
+
+const getComputerChoice = () => {
+   const randomNumber = Math.floor(Math.random() * 3)
+   switch (randomNumber) {
+     case 0: 
+      return 'rock';
+     case 1:
+      return 'paper';
+     case 2:
+      return 'scissors'; 
+   }
+};
+
+/* These were for testing functionality. 
+ console.log(getComputerChoice());
+ console.log(getComputerChoice());
+ console.log(getComputerChoice());
+*/
+
+//WHEN WRITING A FUNCTION, v THESE ARE PARAMETERS v
+ const determineWinner = (userChoice, computerChoice) => {
+  if (userChoice === computerChoice) {
+    return 'This game is a tie!'
+  } 
+  if (userChoice === 'rock') {
+    if (computerChoice === 'paper'){
+      return "Sorry, computer won!";
+    } else {
+      return "Congratulations, you won!"
+    }
+  }
+
+  if (userChoice === 'paper') {
+    if (computerChoice === 'scissors') {
+      return "Sorry, computer won!"
+    } else {
+      return "Congratulations, you won!"
+    }
+  }
+
+  if (userChoice === 'scissors') {
+    if (computerChoice === 'rock') {
+      return "Sorry, computer won!";
+    } else {
+      return "Congratulations, you won!";
+    }
+  }
+  
+  if (userChoice === 'bomb') {
+    return 'Congratulations, you won!';
+  }
+ };
+
+const playGame = () => {
+  //Added "bomb here for secret winning code - You can change this back to either rock, paper, or scissors.
+  const userChoice = getUserChoice('bomb');
+  const computerChoice = getComputerChoice();
+  console.log('You threw: ' + userChoice);
+  /* You can also use string interpolation:
+  console.log(`You threw ${userChoice}`);
+  */
+  console.log('The computer threw: ' + computerChoice);
+  
+  //ONCE WE CALL THE FUNCTION, v THESE ARE NOW ARGUMENTS v
+  console.log(determineWinner(userChoice, computerChoice));
+};
+
+playGame()
+
+/* These were for testing functionality.
+console.log(determineWinner('rock', 'scissors'));
+console.log(determineWinner('paper', 'scissors'));
+console.log(determineWinner('rock', 'rock'));
+*/
